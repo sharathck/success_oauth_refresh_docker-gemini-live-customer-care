@@ -1,0 +1,309 @@
+<head>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+  />
+  <script type="importmap">
+    {
+      "imports": {
+        "@material/web/": "https://esm.run/@material/web/"
+      }
+    }
+  </script>
+  <script type="module">
+    import "@material/web/all.js";
+    import { styles as typescaleStyles } from "@material/web/typography/md-typescale-styles.js";
+
+    document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+  </script>
+
+  <script src="gemini-live-api.js"></script>
+  <script src="live-media-manager.js"></script>
+  <script src="cookieJar.js"></script>
+
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <h1 class="md-typescale-display-medium">Triveni Express - AI Voice Agent</h1>
+  <p class="md-typescale-body-medium">
+    AI Voice Agent receives orders from customers from Triveni Express Menu and provides information about the Menu Items, including their descriptions, prices, and availability.
+  </p>
+  <br />
+
+  <div id="model-config-container">
+
+    <div>
+      <md-outlined-text-field
+        id="token"
+        label="Access Token"
+        value=""
+        type="password"
+      ></md-outlined-text-field>
+      <br />
+      <br />
+      <md-outlined-text-field
+        id="project"
+        label="Project ID"
+        value="reviewtext-ad5c6"
+      ></md-outlined-text-field>
+    </div>
+
+    <div class="modality-container">
+      <p class="md-typescale-body-medium" style="margin-top: 0">
+        Model response type
+      </p>
+
+      <form>
+        <md-radio
+          id="audio-radio"
+          name="responseModality"
+          value="AUDIO"
+          checked="checked"
+        ></md-radio>
+        <label for="audio-radio">
+          <span class="material-symbols-outlined"> volume_up </span>
+          <span class="icon-text">Audio</span>
+        </label>
+
+        <br /><br />
+
+        <md-radio
+          id="text-radio"
+          name="responseModality"
+          value="TEXT"
+        ></md-radio>
+        <label for="text-radio">
+          <span class="material-symbols-outlined"> text_fields </span>
+          <span class="icon-text">Text</span>
+        </label>
+      </form>
+    </div>
+    <md-outlined-text-field
+      id="systemInstructions"
+      type="textarea"
+      label="System Instructions"
+      rows="3"
+      value="Always, greet the customer with , Welcome to the <restaurant_name>.You are a friendly and professional restaurant receptionist assistant. Your primary role is to help customers with inquiries about our menu, prices, reservations, hours, and general restaurant information. Please refer to the below menu items and prices in json format. When customers ask about menu items or prices, refer to the provided restaurant menu data file for accurate information. Always greet customers warmly, speak in a conversational tone, and be patient with their questions. If a customer wants to make a reservation, collect their preferred date, time, party size, and contact information. For menu recommendations, ask about dietary preferences, allergies, or cuisine preferences to provide personalized suggestions. If you don't have specific information about something (like ingredient details or preparation methods), politely let them know you'll have a staff member follow up with them.
+  Keep your responses concise but helpful, as this is a voice interface. Always confirm important details like reservation information or large orders by repeating them back to the customer. If customers ask about topics outside your scope (like directions to the restaurant, parking, or complex dietary restrictions), offer to connect them with a human staff member. Maintain a positive, helpful attitude throughout the conversation and thank customers for choosing your restaurant. End conversations by asking if there's anything else you can help them with today.
+
+  ::::: menu.json ::::
+  [
+    {
+    &quot;restaurant_name&quot;: &quot;Triveni Express&quot;,
+    &quot;contact_info&quot;: {
+      &quot;address&quot;: &quot;W. 5th Avenue, Richmond, TX&quot;,
+      &quot;phone&quot;: &quot;(500) 550-5000&quot;,
+      &quot;website&quot;: &quot;www.triveniexpress.com&quot;
+    },
+    &quot;menu&quot;: [
+      {
+      &quot;category_name&quot;: &quot;Appetizers&quot;,
+      &quot;items&quot;: [
+        {
+        &quot;name&quot;: &quot;Vegetable Samosa&quot;,
+        &quot;price&quot;: 4.25,
+        &quot;description&quot;: &quot;Crispy fried dumplings stuffed with potatoes and vegetables&quot;,
+        &quot;tags&quot;: [&quot;vegetarian&quot;, &quot;appetizer&quot;]
+        },
+        {
+        &quot;name&quot;: &quot;Lamb Samosa&quot;,
+        &quot;price&quot;: 5.95,
+        &quot;description&quot;: &quot;Crispy fried dumplings stuffed with lamb and vegetables&quot;,
+        &quot;tags&quot;: [&quot;lamb&quot;, &quot;appetizer&quot;]
+        },
+        {
+        &quot;name&quot;: &quot;Chicken Pakora&quot;,
+        &quot;price&quot;: 5.95,
+        &quot;description&quot;: &quot;Chopped chicken and onions coated in a chickpea batter and fried&quot;,
+        &quot;tags&quot;: [&quot;chicken&quot;, &quot;appetizer&quot;]
+        },
+        {
+        &quot;name&quot;: &quot;Vegetable Pakora&quot;,
+        &quot;price&quot;: 4.25,
+        &quot;description&quot;: &quot;Chopped mixed vegetables coated in a chickpea batter and fried&quot;,
+        &quot;tags&quot;: [&quot;vegetarian&quot;, &quot;appetizer&quot;]
+        },
+           {
+        &quot;name&quot;: &quot;Vegetable Samosa&quot;,
+        &quot;price&quot;: 4.50,
+        &quot;description&quot;: &quot;Crispy fried dumplings stuffed with potatoes and vegetables&quot;,
+        &quot;tags&quot;: [&quot;vegetarian&quot;, &quot;appetizer&quot;]
+        }
+      ]
+      },
+      {
+      &quot;category_name&quot;: &quot;Breads&quot;,
+      &quot;items&quot;: [
+        {
+        &quot;name&quot;: &quot;Butter Naan&quot;,
+        &quot;price&quot;: 2.00,
+        &quot;description&quot;: null,
+        &quot;tags&quot;: [&quot;vegetarian&quot;, &quot;bread&quot;, &quot;naan&quot;]
+        },
+        {
+        &quot;name&quot;: &quot;Garlic Naan&quot;,
+        &quot;price&quot;: 3.00,
+        &quot;description&quot;: null,
+        &quot;tags&quot;: [&quot;vegetarian&quot;, &quot;bread&quot;, &quot;naan&quot;, &quot;garlic&quot;]
+        },
+        {
+        &quot;name&quot;: &quot;Keema Naan&quot;,
+        &quot;price&quot;: 3.95,
+        &quot;description&quot;: &quot;Flatbread stuffed with spiced minced lamb and cilantro&quot;,
+        &quot;tags&quot;: [&quot;lamb&quot;, &quot;bread&quot;, &quot;naan&quot;]
+        },
+        {
+        &quot;name&quot;: &quot;Cheese Naan&quot;,
+        &quot;price&quot;: 4.50,
+        &quot;description&quot;: &quot;Flatbread baked in a tandoor and stuffed with cheese&quot;,
+        &quot;tags&quot;: [&quot;vegetarian&quot;, &quot;bread&quot;, &quot;naan&quot;, &quot;cheese&quot;]
+        }
+      ]
+      },
+      {
+      &quot;category_name&quot;: &quot;Tandoori&quot;,
+      &quot;items&quot;: [
+        {
+        &quot;name&quot;: &quot;Chicken Tandoori&quot;,
+        &quot;price&quot;: 11.95,
+        &quot;description&quot;: &quot;Chicken on-the-bone marinated in yogurt and spices, cooked in a tandoor, and served with sliced red bell peppers and onions&quot;,
+        &quot;tags&quot;: [&quot;chicken&quot;, &quot;tandoori&quot;]
+        },
+        {
+        &quot;name&quot;: &quot;Tandoori Shrimp&quot;,
+        &quot;price&quot;: 13.95,
+        &quot;description&quot;: &quot;Jumbo shrimp marinated and cooked on skewers in a tandoor oven&quot;,
+        &quot;tags&quot;: [&quot;seafood&quot;, &quot;shrimp&quot;, &quot;tandoori&quot;]
+        },
+        {
+        &quot;name&quot;: &quot;Vegetable Tandoori&quot;,
+        &quot;price&quot;: 9.95,
+        &quot;description&quot;: &quot;Vegetable medley marinated in spices and cooked in the tandoor oven&quot;,
+        &quot;tags&quot;: [&quot;vegetarian&quot;, &quot;tandoori&quot;]
+        },
+        {
+        &quot;name&quot;: &quot;Tandoori Mix Grill&quot;,
+        &quot;price&quot;: 15.75,
+        &quot;description&quot;: &quot;A combination of our most popular tandoori items including shrimp, tandoori chicken tikka, seekh kabob, and boti kabob&quot;,
+        &quot;tags&quot;: [&quot;tandoori&quot;, &quot;mixed_grill&quot;, &quot;seafood&quot;, &quot;chicken&quot;, &quot;lamb&quot;, &quot;beef&quot;]
+        }
+      ]
+      },
+      {
+      &quot;category_name&quot;: &quot;Biryani&quot;,
+      &quot;items&quot;: [
+        {
+        &quot;name&quot;: &quot;Vegetable Biryani&quot;,
+        &quot;price&quot;: 9.25,
+        &quot;description&quot;: &quot;Vegetable medley topped with cashews and cilantro, served over basmati rice&quot;,
+        &quot;tags&quot;: [&quot;vegetarian&quot;, &quot;biryani&quot;, &quot;rice&quot;, &quot;contains_nuts&quot;]
+        },
+        {
+        &quot;name&quot;: &quot;Chicken Biryani&quot;,
+        &quot;price&quot;: 10.95,
+        &quot;description&quot;: &quot;Tender marinated chicken topped with cashews and cilantro, served over basmati rice&quot;,
+        &quot;tags&quot;: [&quot;chicken&quot;, &quot;biryani&quot;, &quot;rice&quot;, &quot;contains_nuts&quot;]
+        },
+        {
+        &quot;name&quot;: &quot;Paneer Biryani&quot;,
+        &quot;price&quot;: 9.25,
+        &quot;description&quot;: &quot;Homemade cheese and root vegetables topped with cashews and cilantro, served over basmati rice&quot;,
+        &quot;tags&quot;: [&quot;vegetarian&quot;, &quot;paneer&quot;, &quot;cheese&quot;, &quot;biryani&quot;, &quot;rice&quot;, &quot;contains_nuts&quot;]
+        }
+      ]
+      }
+    ]
+    }
+  ]"
+    >
+    </md-outlined-text-field>
+
+    <div>
+      <br />
+      <md-outlined-button onclick="connectBtnClick()"
+        >Connect</md-outlined-button
+      >
+      <br /><br />
+      <md-outlined-button onclick="disconnectBtnClick()"
+        >Disconnect</md-outlined-button
+      >
+    </div>
+  </div>
+  <br />
+
+  <div id="model-state">
+    <div id="disconnected" class="state">
+      <span class="material-symbols-outlined"> cloud_off </span>
+      <span class="icon-text">disconnected</span>
+    </div>
+    <div id="connecting" class="state" hidden>
+      <span class="material-symbols-outlined"> hourglass_empty </span>
+      <span class="icon-text">connecting...</span>
+    </div>
+    <div id="connected" class="state" hidden>
+      <span class="material-symbols-outlined"> cloud_done </span>
+      <span class="icon-text">connected</span>
+    </div>
+    <div id="speaking" class="state" hidden>
+      <span class="material-symbols-outlined"> graphic_eq </span>
+      <span class="icon-text">model speaking</span>
+    </div>
+  </div>
+
+  <br />
+
+  <div id="user-input-container">
+    <div>
+
+
+      <br />
+<!--
+      <div>
+        <md-outlined-select
+          id="audioSource"
+          label="Microphone Input"
+          onchange="newMicSelected()"
+        >
+        </md-outlined-select>
+      </div>
+
+      <br />
+      <div class="spread">
+        <span id="micBtn">
+          <md-filled-icon-button onclick="micBtnClick()">
+            <md-icon>mic</md-icon>
+          </md-filled-icon-button>
+        </span>
+
+        <span id="micOffBtn" hidden>
+          <md-filled-icon-button onclick="micOffBtnClick()">
+            <md-icon>mic_off</md-icon>
+          </md-filled-icon-button>
+        </span>
+      </div>
+    </div>
+    <div>
+      <md-outlined-text-field
+        id="text-message"
+        label="Text Message"
+        value=""
+      ></md-outlined-text-field>
+      <md-icon-button onclick="newUserMessage()">
+        <md-icon>send</md-icon>
+      </md-icon-button>
+      <br />
+      <div id="text-chat"></div>
+    </div>
+  </div>
+-->
+  <md-dialog id="dialog" close>
+    <div slot="content">
+      <span id="dialogMessage">A dialog that is opened by default.</span>
+    </div>
+  </md-dialog>
+</body>
