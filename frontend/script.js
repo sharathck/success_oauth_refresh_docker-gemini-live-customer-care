@@ -7,14 +7,13 @@ window.addEventListener("load", (event) => {
 
 const PROXY_URL = "wss://live-agent-rz6cgfhcgq-uc.a.run.app/wss";
 const PROJECT_ID = "reviewtext-ad5c6";
-const MODEL = "gemini-2.0-flash-live-preview-04-09";
+const MODEL = "gemini-live-2.5-flash-preview-native-audio";
 const API_HOST = "us-central1-aiplatform.googleapis.com";
-
-const accessTokenInput = document.getElementById("token");
+console.log("Gemini API Host:", API_HOST);
+console.log("Gemini Live Model:", MODEL);
 const projectInput = document.getElementById("project");
 const systemInstructionsInput = document.getElementById("systemInstructions");
 
-CookieJar.init("token");
 CookieJar.init("project");
 CookieJar.init("systemInstructions");
 
@@ -70,7 +69,7 @@ function connectBtnClick() {
     };
 
     geminiLiveApi.setProjectId(projectInput.value);
-    geminiLiveApi.connect(accessTokenInput.value);
+    geminiLiveApi.connect();
 }
 
 const liveAudioOutputManager = new LiveAudioOutputManager();

@@ -44,7 +44,6 @@ class GeminiLiveAPI {
             alert(message);
         };
 
-        this.accessToken = "";
         this.websocket = null;
 
         console.log("Created Gemini Live API object: ", this);
@@ -55,13 +54,8 @@ class GeminiLiveAPI {
         this.modelUri = `projects/${this.projectId}/locations/us-central1/publishers/google/models/${this.model}`;
     }
 
-    setAccessToken(newAccessToken) {
-        console.log("setting access token: ", newAccessToken);
-        this.accessToken = newAccessToken;
-    }
 
-    connect(accessToken) {
-        this.setAccessToken(accessToken);
+    connect() {
         this.setupWebSocketToService();
     }
 
@@ -106,12 +100,6 @@ class GeminiLiveAPI {
     }
 
     sendInitialSetupMessages() {
-        const serviceSetupMessage = {
-            bearer_token: this.accessToken,
-            service_url: this.serviceUrl,
-        };
-        this.sendMessage(serviceSetupMessage);
-
         const sessionSetupMessage = {
             setup: {
                 model: this.modelUri,

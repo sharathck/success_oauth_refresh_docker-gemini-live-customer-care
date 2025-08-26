@@ -62,27 +62,21 @@ async def create_proxy(
         await asyncio.gather(client_to_server_task, server_to_client_task)
 
 
+# Hardcoded access token
+BEARER_TOKEN = ""
+
+
 async def handle_client(client_websocket: WebSocketServerProtocol) -> None:
     """
-    Handles a new client connection, expecting the first message to contain a bearer token.
-    Establishes a proxy connection to the server upon successful authentication.
+    Handles a new client connection, using a hardcoded bearer token.
+    Establishes a proxy connection to the server.
 
     Args:
         client_websocket: The WebSocket connection of the client.
     """
     print("New connection...")
-    # Wait for the first message from the client
-    auth_message = await asyncio.wait_for(client_websocket.recv(), timeout=5.0)
-    auth_data = json.loads(auth_message)
-
-    if "bearer_token" in auth_data:
-        bearer_token = auth_data["bearer_token"]
-    else:
-        print("Error: Bearer token not found in the first message.")
-        await client_websocket.close(code=1008, reason="Bearer token missing")
-        return
-
-    await create_proxy(client_websocket, bearer_token)
+    
+    await create_proxy(client_websocket, BEARER_TOKEN)
 
 
 async def main() -> None:
