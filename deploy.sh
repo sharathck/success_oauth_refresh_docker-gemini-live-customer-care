@@ -98,7 +98,9 @@ gcloud run deploy $GOOGLE_CLOUD_RUN_SERVICE_NAME \
   --image $DOCKER_IMAGE_TAG \
   --platform managed \
   --region $GOOGLE_CLOUD_REGION \
+  --source=./ \
   --allow-unauthenticated \
+  --port=8000 \
   --project $GOOGLE_CLOUD_PROJECT_ID
 # Check if the deployment was successful
 if [ $? -ne 0 ]; then
