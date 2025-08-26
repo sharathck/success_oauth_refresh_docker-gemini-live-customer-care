@@ -1,4 +1,1 @@
-f0163151603c49b368ae3618dcc4668a230df8c19c6f9931812b5b29e291323b
-docker: Error response from daemon: failed to set up container networking: driver failed programming external connectivity on endpoint dreamy_gagarin (bca0cde5852d8b7ed06c34d398b328e89bf2c51f548efd74c4c5d82ca5509d05): Bind for 0.0.0.0:8000 failed: port is already allocated
-
-Run 'docker run --help' for more information
+20815e02bc9993a087de9062dc34369e54a25277830007955d0415cd1aefad50
