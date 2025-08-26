@@ -5,69 +5,63 @@
 #1 DONE 0.0s
 
 #2 [internal] load metadata for docker.io/library/nginx:alpine
-#2 ...
+#2 DONE 0.5s
 
-#3 [auth] library/nginx:pull token for registry-1.docker.io
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
 #3 DONE 0.0s
 
-#2 [internal] load metadata for docker.io/library/nginx:alpine
-#2 DONE 0.6s
-
-#4 [internal] load .dockerignore
-#4 transferring context: 2B done
-#4 DONE 0.0s
+#4 [internal] load build context
+#4 transferring context: 11.16kB 0.1s done
+#4 DONE 0.1s
 
 #5 [1/7] FROM docker.io/library/nginx:alpine@sha256:42a516af16b852e33b7682d5ef8acbd5d13fe08fecadc7ed98605ba5e3b26ab8
-#5 resolve docker.io/library/nginx:alpine@sha256:42a516af16b852e33b7682d5ef8acbd5d13fe08fecadc7ed98605ba5e3b26ab8 done
-#5 DONE 0.0s
+#5 resolve docker.io/library/nginx:alpine@sha256:42a516af16b852e33b7682d5ef8acbd5d13fe08fecadc7ed98605ba5e3b26ab8
+#5 resolve docker.io/library/nginx:alpine@sha256:42a516af16b852e33b7682d5ef8acbd5d13fe08fecadc7ed98605ba5e3b26ab8 0.1s done
+#5 DONE 0.1s
 
-#6 [internal] load build context
-#6 transferring context: 7.92kB done
-#6 DONE 0.0s
+#6 [2/7] RUN apk add --no-cache python3 py3-pip supervisor
+#6 CACHED
 
-#7 [2/7] RUN apk add --no-cache python3 py3-pip supervisor
-#7 CACHED
+#7 [3/7] COPY frontend/. /usr/share/nginx/html
+#7 DONE 0.0s
 
-#8 [3/7] COPY frontend/. /usr/share/nginx/html
+#8 [4/7] COPY backend/. /app
 #8 DONE 0.0s
 
-#9 [4/7] COPY backend/. /app
-#9 DONE 0.0s
+#9 [5/7] RUN pip3 install --no-cache-dir --break-system-packages -r app/requirements.txt
+#9 1.562 Collecting websockets==14.2 (from -r app/requirements.txt (line 1))
+#9 1.704   Downloading websockets-14.2-cp312-cp312-musllinux_1_2_x86_64.whl.metadata (6.8 kB)
+#9 1.750 Collecting asyncio==3.4.3 (from -r app/requirements.txt (line 2))
+#9 1.777   Downloading asyncio-3.4.3-py3-none-any.whl.metadata (1.7 kB)
+#9 1.812 Downloading websockets-14.2-cp312-cp312-musllinux_1_2_x86_64.whl (169 kB)
+#9 1.896 Downloading asyncio-3.4.3-py3-none-any.whl (101 kB)
+#9 1.941 Installing collected packages: asyncio, websockets
+#9 2.377 
+#9 2.384 Successfully installed asyncio-3.4.3 websockets-14.2
+#9 2.385 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#9 DONE 2.5s
 
-#10 [5/7] RUN pip3 install --no-cache-dir --break-system-packages -r app/requirements.txt
-#10 0.881 Collecting websockets==14.2 (from -r app/requirements.txt (line 1))
-#10 0.977   Downloading websockets-14.2-cp312-cp312-musllinux_1_2_x86_64.whl.metadata (6.8 kB)
-#10 1.004 Collecting asyncio==3.4.3 (from -r app/requirements.txt (line 2))
-#10 1.023   Downloading asyncio-3.4.3-py3-none-any.whl.metadata (1.7 kB)
-#10 1.047 Downloading websockets-14.2-cp312-cp312-musllinux_1_2_x86_64.whl (169 kB)
-#10 1.111 Downloading asyncio-3.4.3-py3-none-any.whl (101 kB)
-#10 1.135 Installing collected packages: asyncio, websockets
-#10 1.337 
-#10 1.339 Successfully installed asyncio-3.4.3 websockets-14.2
-#10 1.340 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
-#10 DONE 1.4s
+#10 [6/7] COPY supervisord.conf /etc/supervisor/supervisord.conf
+#10 DONE 0.0s
 
-#11 [6/7] COPY supervisord.conf /etc/supervisor/supervisord.conf
+#11 [7/7] COPY nginx.conf /etc/nginx/nginx.conf
 #11 DONE 0.0s
 
-#12 [7/7] COPY nginx.conf /etc/nginx/nginx.conf
-#12 DONE 0.0s
+#12 exporting to docker image format
+#12 exporting layers 0.1s done
+#12 exporting manifest sha256:9a55eab7e23897e566ff4e1229c016de6063d2456d926cdd08688225d128b25a done
+#12 exporting config sha256:433ea0d3cba623f4d551b52bd808b96acc7f2e6627cb2431dd0d5334214afb45 done
+#12 sending tarball
+#12 sending tarball 2.4s done
+#12 DONE 2.5s
 
-#13 exporting to docker image format
-#13 exporting layers 0.1s done
-#13 exporting manifest sha256:460e2d958df26d1bab45c33a57ae39bebb3c6fabfa787add91f622006f69dc65
-#13 exporting manifest sha256:460e2d958df26d1bab45c33a57ae39bebb3c6fabfa787add91f622006f69dc65 done
-#13 exporting config sha256:c094483519fb2aa7b744cd4c48ae0fe35036768517560d569a1af9b6d7a5a262 done
-#13 sending tarball
-#13 sending tarball 1.0s done
-#13 DONE 1.1s
+#13 importing to docker
+#13 loading layer 50f49a1491a1 9.69kB / 9.69kB 0.3s done
+#13 loading layer 66f0384ac10e 1.29kB / 1.29kB 0.3s done
+#13 loading layer 171e4097f245 615.97kB / 615.97kB 0.2s done
+#13 loading layer d5f641785c58 313B / 313B 0.1s done
+#13 loading layer b12a9d3564ae 578B / 578B 0.0s done
+#13 DONE 0.3s
 
-#14 importing to docker
-#14 loading layer 4e6e1f16055a 9.69kB / 9.69kB 0.1s done
-#14 loading layer 554e94fbe6b5 1.29kB / 1.29kB 0.1s done
-#14 loading layer 861735170337 615.93kB / 615.93kB 0.1s done
-#14 loading layer 1775cd4f943b 313B / 313B 0.0s done
-#14 loading layer f715e6691da8 578B / 578B 0.0s done
-#14 DONE 0.1s
-
-View build details: docker-desktop://dashboard/build/optimistic_ptolemy/optimistic_ptolemy0/wy3nhfx1niaam7bmw7fg5knaa
+View build details: docker-desktop://dashboard/build/optimistic_ptolemy/optimistic_ptolemy0/0rwdxjqq208ia6aws0449hdr8
