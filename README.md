@@ -57,6 +57,7 @@ docker run -d -p 8000:8000 -v
      c9215eaf35dc
 ⏺ Bash(docker system prune -af --volumes)
 
+docker logs -f websocket-demo-app # gives real time log information
 ```
 
 ### successful local docker
@@ -120,6 +121,38 @@ docker run -d -p 8000:8000 -v
 - **Backend (Python WebSockets Server):** Handles authentication and acts as an intermediary between your frontend and the Gemini API.
 - **Frontend (HTML/JavaScript):** Provides the user interface and interacts with the backend via WebSockets.
 
+## Successful backend log looks like this
+```
+2025-08-27 10:11:37,769 - INFO - 🎬 Starting application...
+2025-08-27 10:11:37,769 - INFO - ⏰ Start time: 2025-08-27 10:11:37.769562
+2025-08-27 10:11:37,769 - DEBUG - Using selector: KqueueSelector
+2025-08-27 10:11:37,769 - INFO - 🚀 Starting WebSocket server...
+2025-08-27 10:11:37,769 - INFO - 🔧 Initializing authentication service...
+2025-08-27 10:11:37,769 - INFO - 🔧 Initializing ServiceAccountAuth...
+2025-08-27 10:11:37,769 - DEBUG - 📁 Credentials path provided: None
+2025-08-27 10:11:37,769 - DEBUG - 🏷️ Project ID provided: reviewtext-ad5c6
+2025-08-27 10:11:37,769 - INFO - 📂 Using credentials file: reviewtext-ad5c6-vertex-ai.json
+2025-08-27 10:11:37,769 - INFO - 🏷️ Using project ID: reviewtext-ad5c6
+2025-08-27 10:11:37,769 - DEBUG - 🌍 GOOGLE_CLOUD_PROJECT_ID env var: None
+2025-08-27 10:11:37,769 - INFO - 📄 Loading credentials...
+2025-08-27 10:11:37,769 - INFO - 🔑 Loading credentials from: reviewtext-ad5c6-vertex-ai.json
+2025-08-27 10:11:37,770 - INFO - ✅ Credentials file exists: reviewtext-ad5c6-vertex-ai.json
+2025-08-27 10:11:37,770 - DEBUG - 📊 File size: 2358 bytes
+2025-08-27 10:11:37,770 - INFO - ✅ JSON credentials loaded successfully
+2025-08-27 10:11:37,770 - DEBUG - 🔍 Credential keys: ['type', 'project_id', 'private_key_id', 'private_key', 'client_email', 'client_id', 'auth_uri', 'token_uri', 'auth_provider_x509_cert_url', 'client_x509_cert_url', 'universe_domain']
+2025-08-27 10:11:37,770 - DEBUG - 📧 Service account email: vertexai@reviewtext-ad5c6.iam.gserviceaccount.com
+2025-08-27 10:11:37,770 - DEBUG - 🆔 Project ID from creds: reviewtext-ad5c6
+2025-08-27 10:11:37,770 - INFO - 🎯 Using scopes: ['https://www.googleapis.com/auth/cloud-platform']
+2025-08-27 10:11:37,843 - INFO - ✅ Service account credentials created successfully
+2025-08-27 10:11:37,843 - DEBUG - 🔗 Credentials service account email: vertexai@reviewtext-ad5c6.iam.gserviceaccount.com
+2025-08-27 10:11:37,843 - DEBUG - 🎯 Credentials scopes: ['https://www.googleapis.com/auth/cloud-platform']
+2025-08-27 10:11:37,843 - INFO - ✅ Authentication service initialized successfully
+2025-08-27 10:11:37,843 - INFO - 🌐 Starting server on localhost:8080...
+2025-08-27 10:11:37,846 - INFO - server listening on [::1]:8080
+2025-08-27 10:11:37,846 - INFO - server listening on 127.0.0.1:8080
+2025-08-27 10:11:37,846 - INFO - ✅ WebSocket server running on localhost:8080
+2025-08-27 10:11:37,846 - INFO - ⏳ Waiting for connections...
+```
 ## Pre-requisites
 
 While some web development experience, particularly with localhost, port numbers, and the distinction between WebSockets and HTTP requests, can be beneficial for this tutorial, don't worry if you're not familiar with these concepts. We'll provide guidance along the way to ensure you can successfully follow along.
