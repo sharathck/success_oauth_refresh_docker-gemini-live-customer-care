@@ -1,1 +1,4 @@
-6d751e0cb06b37d8703a095290906b4e7dd07f137f4f919f8ed7d6ee350f97e1
+Unable to find image 'local_docker_tesing:latest' locally
+docker: Error response from daemon: pull access denied for local_docker_tesing, repository does not exist or may require 'docker login': denied: requested access to the resource is denied
+
+Run 'docker run --help' for more information

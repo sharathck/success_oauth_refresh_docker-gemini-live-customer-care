@@ -6,8 +6,8 @@ window.addEventListener("load", (event) => {
 });
 
 //const PROXY_URL = "ws://localhost:8080";
-//const PROXY_URL = "ws://localhost:8000/ws";
-const PROXY_URL = "wss://live-agent-refresh-rz6cgfhcgq-uc.a.run.app/wss";
+const PROXY_URL = "ws://localhost:8000/ws";
+//const PROXY_URL = "wss://live-agent-refresh-rz6cgfhcgq-uc.a.run.app/wss";
 const PROJECT_ID = "reviewtext-ad5c6";
 const MODEL = "gemini-live-2.5-flash-preview-native-audio";
 //const MODEL = "gemini-2.0-flash-live-preview-04-09";

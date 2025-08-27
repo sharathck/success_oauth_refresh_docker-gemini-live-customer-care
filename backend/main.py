@@ -1,18 +1,26 @@
 import asyncio
 import json
 import os
+import subprocess
 
 import websockets
 from websockets.legacy.protocol import WebSocketCommonProtocol
 from websockets.legacy.server import WebSocketServerProtocol
-from auth import ServiceAccountAuth
 
 HOST = "us-central1-aiplatform.googleapis.com"
 SERVICE_URL = f"wss://{HOST}/ws/google.cloud.aiplatform.v1beta1.LlmBidiService/BidiGenerateContent"
 
 DEBUG = False
 
-auth_service = ServiceAccountAuth()
+def get_access_token():
+    """Get access token using gcloud CLI"""
+    try:
+        result = subprocess.run(['gcloud', 'auth', 'print-access-token'], 
+                               capture_output=True, text=True, check=True)
+        return result.stdout.strip()
+    except subprocess.CalledProcessError as e:
+        print(f"Error getting access token: {e}")
+        return None
 
 
 async def proxy_task(
@@ -50,7 +58,9 @@ async def create_proxy(
         client_websocket: The WebSocket connection of the client.
     """
     
-    bearer_token = auth_service.get_access_token()
+    bearer_token = get_access_token()
+    if not bearer_token:
+        raise Exception("Failed to get access token")
     headers = {
         "Content-Type": "application/json",
         "Authorization": f"Bearer {bearer_token}",
