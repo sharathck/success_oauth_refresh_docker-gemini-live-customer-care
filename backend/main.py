@@ -1,14 +1,18 @@
 import asyncio
 import json
+import os
 
 import websockets
 from websockets.legacy.protocol import WebSocketCommonProtocol
 from websockets.legacy.server import WebSocketServerProtocol
+from auth import ServiceAccountAuth
 
 HOST = "us-central1-aiplatform.googleapis.com"
 SERVICE_URL = f"wss://{HOST}/ws/google.cloud.aiplatform.v1beta1.LlmBidiService/BidiGenerateContent"
 
 DEBUG = False
+
+auth_service = ServiceAccountAuth()
 
 
 async def proxy_task(
@@ -36,7 +40,7 @@ async def proxy_task(
 
 
 async def create_proxy(
-    client_websocket: WebSocketCommonProtocol, bearer_token: str
+    client_websocket: WebSocketCommonProtocol
 ) -> None:
     """
     Establishes a WebSocket connection to the server and creates two tasks for
@@ -44,9 +48,9 @@ async def create_proxy(
 
     Args:
         client_websocket: The WebSocket connection of the client.
-        bearer_token: The bearer token for authentication with the server.
     """
-
+    
+    bearer_token = auth_service.get_access_token()
     headers = {
         "Content-Type": "application/json",
         "Authorization": f"Bearer {bearer_token}",
@@ -66,25 +70,18 @@ async def create_proxy(
 
 async def handle_client(client_websocket: WebSocketServerProtocol) -> None:
     """
-    Handles a new client connection, expecting the first message to contain a bearer token.
-    Establishes a proxy connection to the server upon successful authentication.
+    Handles a new client connection and establishes a proxy connection to the server.
 
     Args:
         client_websocket: The WebSocket connection of the client.
     """
     print("New connection...")
-    # Wait for the first message from the client
-    auth_message = await asyncio.wait_for(client_websocket.recv(), timeout=9.0)
-    auth_data = json.loads(auth_message)
-
-    if "bearer_token" in auth_data:
-        bearer_token = auth_data["bearer_token"]
-    else:
-        print("Error: Bearer token not found in the first message.")
-        await client_websocket.close(code=1008, reason="Bearer token missing")
-        return
-
-    await create_proxy(client_websocket, bearer_token)
+    
+    try:
+        await create_proxy(client_websocket)
+    except Exception as e:
+        print(f"Error creating proxy: {e}")
+        await client_websocket.close(code=1011, reason="Internal server error")
 
 
 async def main() -> None:

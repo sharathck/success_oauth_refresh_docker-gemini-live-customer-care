@@ -74,7 +74,7 @@ function connectBtnClick() {
     };
 
     geminiLiveApi.setProjectId(projectInput.value);
-    geminiLiveApi.connect(accessTokenInput.value);
+    geminiLiveApi.connect();
 }
 
 const liveAudioOutputManager = new LiveAudioOutputManager();
