@@ -167,7 +167,8 @@ async def create_proxy(
     
     try:
         async with websockets.connect(
-            SERVICE_URL, extra_headers=headers
+            SERVICE_URL, 
+            extra_headers=headers
         ) as server_websocket:
             logger.info("✅ Connected to Gemini service successfully!")
             
