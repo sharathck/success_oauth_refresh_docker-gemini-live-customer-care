@@ -18,9 +18,8 @@ COPY backend/requirements.txt /app/requirements.txt
 # Copy service account file
 COPY backend/reviewtext-ad5c6-vertex-ai.json /app/reviewtext-ad5c6-vertex-ai.json
 
-# Upgrade pip and install dependencies
-RUN pip3 install --upgrade pip && \
-    pip3 install --no-cache-dir --break-system-packages -r /app/requirements.txt
+# Install websockets using apk package manager
+RUN apk add --no-cache py3-websockets
 
 # Configure gcloud and generate access token
 RUN gcloud components update && \

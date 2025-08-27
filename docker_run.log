@@ -1,4 +1,2 @@
-Unable to find image 'local_docker_tesing:latest' locally
-docker: Error response from daemon: pull access denied for local_docker_tesing, repository does not exist or may require 'docker login': denied: requested access to the resource is denied
-
-Run 'docker run --help' for more information
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+65e86a65ac11b0d258c036ca45a95c4254cd0c79c69390e85c52f558f0801a0f

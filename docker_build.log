@@ -1,91 +1,72 @@
 #0 building with "optimistic_ptolemy" instance using docker-container driver
 
 #1 [internal] load build definition from Dockerfile
-#1 transferring dockerfile: 1.18kB done
+#1 transferring dockerfile: 1.15kB done
 #1 DONE 0.0s
 
-#2 [internal] load metadata for docker.io/library/nginx:alpine
-#2 DONE 0.2s
+#2 [auth] library/nginx:pull token for registry-1.docker.io
+#2 DONE 0.0s
 
-#3 [internal] load .dockerignore
-#3 transferring context: 2B done
-#3 DONE 0.0s
+#3 [internal] load metadata for docker.io/library/nginx:alpine
+#3 DONE 0.7s
 
-#4 [internal] load build context
-#4 transferring context: 10.64kB 0.0s done
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
 #4 DONE 0.0s
 
-#5 [ 1/11] FROM docker.io/library/nginx:alpine@sha256:42a516af16b852e33b7682d5ef8acbd5d13fe08fecadc7ed98605ba5e3b26ab8
+#5 [ 1/12] FROM docker.io/library/nginx:alpine@sha256:42a516af16b852e33b7682d5ef8acbd5d13fe08fecadc7ed98605ba5e3b26ab8
 #5 resolve docker.io/library/nginx:alpine@sha256:42a516af16b852e33b7682d5ef8acbd5d13fe08fecadc7ed98605ba5e3b26ab8 0.0s done
 #5 DONE 0.0s
 
-#6 [ 2/11] RUN apk add --no-cache python3 py3-pip supervisor curl bash
-#6 CACHED
+#6 [internal] load build context
+#6 transferring context: 620B done
+#6 DONE 0.0s
 
-#7 [ 3/11] RUN curl -sSL https://sdk.cloud.google.com | bash
+#7 [ 9/12] RUN apk add --no-cache py3-websockets
 #7 CACHED
 
-#8 [ 4/11] COPY frontend/. /usr/share/nginx/html
-#8 DONE 0.0s
+#8 [ 4/12] COPY frontend/. /usr/share/nginx/html
+#8 CACHED
 
-#9 [ 5/11] COPY backend/main.py /app/main.py
-#9 DONE 0.0s
+#9 [ 8/12] COPY backend/reviewtext-ad5c6-vertex-ai.json /app/reviewtext-ad5c6-vertex-ai.json
+#9 CACHED
 
-#10 [ 6/11] COPY backend/requirements.txt /app/requirements.txt
-#10 DONE 0.0s
+#10 [ 6/12] COPY backend/auth.py /app/auth.py
+#10 CACHED
 
-#11 [ 7/11] COPY backend/reviewtext-ad5c6-vertex-ai.json /app/reviewtext-ad5c6-vertex-ai.json
-#11 DONE 0.0s
+#11 [11/12] COPY supervisord.conf /etc/supervisor/supervisord.conf
+#11 CACHED
 
-#12 [ 8/11] RUN pip3 install --upgrade pip &&     pip3 install --no-cache-dir --break-system-packages -r /app/requirements.txt
-#12 1.098 error: externally-managed-environment
-#12 1.098 
-#12 1.098 × This environment is externally managed
-#12 1.098 ╰─> 
-#12 1.098     The system-wide python installation should be maintained using the system
-#12 1.098     package manager (apk) only.
-#12 1.098     
-#12 1.098     If the package in question is not packaged already (and hence installable via
-#12 1.098     "apk add py3-somepackage"), please consider installing it inside a virtual
-#12 1.098     environment, e.g.:
-#12 1.098     
-#12 1.098     python3 -m venv /path/to/venv
-#12 1.098     . /path/to/venv/bin/activate
-#12 1.098     pip install mypackage
-#12 1.098     
-#12 1.098     To exit the virtual environment, run:
-#12 1.098     
-#12 1.098     deactivate
-#12 1.098     
-#12 1.098     The virtual environment is not deleted, and can be re-entered by re-sourcing
-#12 1.098     the activate file.
-#12 1.098     
-#12 1.098     To automatically manage virtual environments, consider using pipx (from the
-#12 1.098     pipx package).
-#12 1.098 
-#12 1.098 note: If you believe this is a mistake, please contact your Python installation or OS distribution provider. You can override this, at the risk of breaking your Python installation or OS, by passing --break-system-packages.
-#12 1.098 hint: See PEP 668 for the detailed specification.
-#12 ERROR: process "/bin/sh -c pip3 install --upgrade pip &&     pip3 install --no-cache-dir --break-system-packages -r /app/requirements.txt" did not complete successfully: exit code: 1
-------
- > [ 8/11] RUN pip3 install --upgrade pip &&     pip3 install --no-cache-dir --break-system-packages -r /app/requirements.txt:
-1.098     deactivate
-1.098     
-1.098     The virtual environment is not deleted, and can be re-entered by re-sourcing
-1.098     the activate file.
-1.098     
-1.098     To automatically manage virtual environments, consider using pipx (from the
-1.098     pipx package).
-1.098 
-1.098 note: If you believe this is a mistake, please contact your Python installation or OS distribution provider. You can override this, at the risk of breaking your Python installation or OS, by passing --break-system-packages.
-1.098 hint: See PEP 668 for the detailed specification.
-------
-Dockerfile:21
---------------------
-  20 |     # Upgrade pip and install dependencies
-  21 | >>> RUN pip3 install --upgrade pip && \
-  22 | >>>     pip3 install --no-cache-dir --break-system-packages -r /app/requirements.txt
-  23 |     
---------------------
-ERROR: failed to build: failed to solve: process "/bin/sh -c pip3 install --upgrade pip &&     pip3 install --no-cache-dir --break-system-packages -r /app/requirements.txt" did not complete successfully: exit code: 1
+#12 [ 3/12] RUN curl -sSL https://sdk.cloud.google.com | bash
+#12 CACHED
 
-View build details: docker-desktop://dashboard/build/optimistic_ptolemy/optimistic_ptolemy0/x9ao3pfhcxhwcio6okvr5qnfh
+#13 [ 5/12] COPY backend/main.py /app/main.py
+#13 CACHED
+
+#14 [ 2/12] RUN apk add --no-cache python3 py3-pip supervisor curl bash
+#14 CACHED
+
+#15 [10/12] RUN gcloud components update &&     gcloud components install beta &&     gcloud config set project reviewtext-ad5c6 &&     gcloud auth activate-service-account --key-file=/app/reviewtext-ad5c6-vertex-ai.json
+#15 CACHED
+
+#16 [ 7/12] COPY backend/requirements.txt /app/requirements.txt
+#16 CACHED
+
+#17 [12/12] COPY nginx.conf /etc/nginx/nginx.conf
+#17 CACHED
+
+#18 exporting to docker image format
+#18 exporting layers done
+#18 exporting manifest sha256:cfe64c3947ac2385a3f2431ad9ae933ea9751ad3f6f05a3c605adec252dc441b done
+#18 exporting config sha256:46b91d0040d67a81277ab466311c9b5a8edb8fde2d6243f11fa7b065930107b4 done
+#18 sending tarball
+#18 ...
+
+#19 importing to docker
+#19 DONE 0.1s
+
+#18 exporting to docker image format
+#18 sending tarball 6.3s done
+#18 DONE 6.3s
+
+View build details: docker-desktop://dashboard/build/optimistic_ptolemy/optimistic_ptolemy0/xah0miab3xs6088foxialdm6i
