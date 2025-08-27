@@ -42,9 +42,10 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-docker run -d -p 8000:8000 local_docker_tesing 2>&1 | tee docker_run.log
+docker run -d -p 8000:8000 --name websocket-demo-app local_docker_tesing 2>&1 | tee docker_run.log
 # check if the docker image was run successfully
 if [ $? -ne 0 ]; then
     echo "ERROR ERROR ERROR  :::::::::::::   ERROR ERROR ERROR  ::::::::::: Docker image run failed. Please check the logs for more details."
     exit 1
 fi
+docker logs -f websocket-demo-app
