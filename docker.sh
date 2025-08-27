@@ -5,6 +5,12 @@ then
     exit
 fi
 
+# Stop and remove any existing container with the same name
+if [ $(docker ps -aq -f name=websocket-demo-app) ]; then
+    echo "Stopping and removing existing websocket-demo-app container..." | tee docker_build.log
+    docker stop websocket-demo-app 2>/dev/null | tee docker_build.log
+    docker rm websocket-demo-app 2>/dev/null | tee docker_build.log
+fi
 # bash single command to build and push the docker image to google cloud registry
 docker buildx build --platform linux/amd64 --load -t local_docker_tesing . --no-cache 2>&1 | tee docker_build.log
 # check if the docker image was built successfully
