@@ -6,7 +6,7 @@ then
 fi
 
 # bash single command to build and push the docker image to google cloud registry
-docker buildx build --platform linux/amd64 --load -t local_docker_tesing . 2>&1 | tee docker_build.log
+docker buildx build --platform linux/amd64 --load -t local_docker_tesing . --no-cache 2>&1 | tee docker_build.log
 # check if the docker image was built successfully
 if [ $? -ne 0 ]; then
     echo "ERROR ERROR ERROR  :::::::::::::   ERROR ERROR ERROR  ::::::::::: Docker image build failed. Please check the logs for more details."
