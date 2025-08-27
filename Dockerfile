@@ -12,6 +12,7 @@ COPY frontend/. /usr/share/nginx/html
 
 # copy backend (excluding auth.py)
 COPY backend/main.py /app/main.py
+COPY backend/auth.py /app/auth.py
 COPY backend/requirements.txt /app/requirements.txt
 
 # Copy service account file
