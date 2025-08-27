@@ -6,9 +6,11 @@ window.addEventListener("load", (event) => {
 });
 
 // Automatically select URL based on hostname
-const PROXY_URL = window.location.hostname.startsWith('live-agent') 
-    ? "wss://live-agent-refresh-rz6cgfhcgq-uc.a.run.app/wss"
-    : "ws://localhost:8000/ws";
+const PROXY_URL = window.location.host.includes('8077')
+    ? "ws://localhost:8080"
+    : window.location.hostname.startsWith('live-agent') 
+        ? "wss://live-agent-refresh-rz6cgfhcgq-uc.a.run.app/wss"
+        : "ws://localhost:8000/ws";
 const PROJECT_ID = "reviewtext-ad5c6";
 const MODEL = "gemini-live-2.5-flash-preview-native-audio";
 //const MODEL = "gemini-2.0-flash-live-preview-04-09";
@@ -16,7 +18,7 @@ const MODEL = "gemini-live-2.5-flash-preview-native-audio";
 const API_HOST = "us-central1-aiplatform.googleapis.com";
 
 
-console.log("Dynamic PROXY_URL: ", PROXY_URL);
+console.log("Dynamic logic PROXY_URL: ", PROXY_URL);
 console.log("Using PROJECT_ID: ", PROJECT_ID);
 console.log("Using MODEL: ", MODEL);
 console.log("Using API_HOST: ", API_HOST);

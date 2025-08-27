@@ -179,7 +179,7 @@ You can set up this app locally or via Cloud Shell.
 
     ```sh
     cd frontend
-    python3 -m http.server
+    python3 -m http.server 8077
     ```
 
 1. Point your browser to the demo app UI based on the output of the terminal. (e.g., it may be `http://localhost:8000`, or it may use a different port.)
