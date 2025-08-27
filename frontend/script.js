@@ -5,9 +5,10 @@ window.addEventListener("load", (event) => {
     setAvailableMicrophoneOptions();
 });
 
-//const PROXY_URL = "ws://localhost:8080";
-const PROXY_URL = "ws://localhost:8000/ws";
-//const PROXY_URL = "wss://live-agent-refresh-rz6cgfhcgq-uc.a.run.app/wss";
+// Automatically select URL based on hostname
+const PROXY_URL = window.location.hostname.startsWith('live-agent') 
+    ? "wss://live-agent-refresh-rz6cgfhcgq-uc.a.run.app/wss"
+    : "ws://localhost:8000/ws";
 const PROJECT_ID = "reviewtext-ad5c6";
 const MODEL = "gemini-live-2.5-flash-preview-native-audio";
 //const MODEL = "gemini-2.0-flash-live-preview-04-09";
@@ -15,7 +16,7 @@ const MODEL = "gemini-live-2.5-flash-preview-native-audio";
 const API_HOST = "us-central1-aiplatform.googleapis.com";
 
 
-console.log("Using PROXY_URL: ", PROXY_URL);
+console.log("Dynamic PROXY_URL: ", PROXY_URL);
 console.log("Using PROJECT_ID: ", PROJECT_ID);
 console.log("Using MODEL: ", MODEL);
 console.log("Using API_HOST: ", API_HOST);
