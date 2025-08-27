@@ -12,11 +12,11 @@
 #3 DONE 0.0s
 
 #4 [1/7] FROM docker.io/library/nginx:alpine@sha256:42a516af16b852e33b7682d5ef8acbd5d13fe08fecadc7ed98605ba5e3b26ab8
-#4 resolve docker.io/library/nginx:alpine@sha256:42a516af16b852e33b7682d5ef8acbd5d13fe08fecadc7ed98605ba5e3b26ab8 done
+#4 resolve docker.io/library/nginx:alpine@sha256:42a516af16b852e33b7682d5ef8acbd5d13fe08fecadc7ed98605ba5e3b26ab8 0.0s done
 #4 DONE 0.0s
 
 #5 [internal] load build context
-#5 transferring context: 7.91kB done
+#5 transferring context: 8.13kB done
 #5 DONE 0.0s
 
 #6 [2/7] RUN apk add --no-cache python3 py3-pip supervisor
@@ -29,16 +29,16 @@
 #8 DONE 0.0s
 
 #9 [5/7] RUN pip3 install --no-cache-dir --break-system-packages -r app/requirements.txt
-#9 1.504 Collecting websockets==14.2 (from -r app/requirements.txt (line 1))
-#9 1.635   Downloading websockets-14.2-cp312-cp312-musllinux_1_2_x86_64.whl.metadata (6.8 kB)
-#9 1.672 Collecting asyncio==3.4.3 (from -r app/requirements.txt (line 2))
-#9 1.694   Downloading asyncio-3.4.3-py3-none-any.whl.metadata (1.7 kB)
-#9 1.721 Downloading websockets-14.2-cp312-cp312-musllinux_1_2_x86_64.whl (169 kB)
-#9 1.783 Downloading asyncio-3.4.3-py3-none-any.whl (101 kB)
-#9 1.807 Installing collected packages: asyncio, websockets
-#9 2.468 
-#9 2.472 Successfully installed asyncio-3.4.3 websockets-14.2
-#9 2.472 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#9 1.770 Collecting websockets==14.2 (from -r app/requirements.txt (line 1))
+#9 1.906   Downloading websockets-14.2-cp312-cp312-musllinux_1_2_x86_64.whl.metadata (6.8 kB)
+#9 1.937 Collecting asyncio==3.4.3 (from -r app/requirements.txt (line 2))
+#9 1.996   Downloading asyncio-3.4.3-py3-none-any.whl.metadata (1.7 kB)
+#9 2.025 Downloading websockets-14.2-cp312-cp312-musllinux_1_2_x86_64.whl (169 kB)
+#9 2.116 Downloading asyncio-3.4.3-py3-none-any.whl (101 kB)
+#9 2.164 Installing collected packages: asyncio, websockets
+#9 2.533 
+#9 2.535 Successfully installed asyncio-3.4.3 websockets-14.2
+#9 2.536 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
 #9 DONE 2.6s
 
 #10 [6/7] COPY supervisord.conf /etc/supervisor/supervisord.conf
@@ -50,18 +50,18 @@
 #12 exporting to docker image format
 #12 exporting layers
 #12 exporting layers 0.2s done
-#12 exporting manifest sha256:c25dc62dc75b2c5d9b2dc19ddc6910bb6b26bc65db47537b5737605ee02d21c4 done
-#12 exporting config sha256:16d3bdef1197e67fe7a157a41788418b4705372449e33a3ed24507975e260918 done
+#12 exporting manifest sha256:3460c5e2c0b1d983a119a2a1a20f74744a98e67748def2c9dde16baf5a19bc7e done
+#12 exporting config sha256:84b85c6cb5cbcfe3716cfbc08cddcde6ce93ff3e919b9d0b7d0ce366bf27c7c7 done
 #12 sending tarball
-#12 sending tarball 1.5s done
-#12 DONE 1.7s
+#12 sending tarball 1.3s done
+#12 DONE 1.5s
 
 #13 importing to docker
-#13 loading layer 430c23c4786f 9.58kB / 9.58kB 0.2s done
-#13 loading layer 6bb0e140e8fb 1.41kB / 1.41kB 0.2s done
-#13 loading layer 80f7fdc76a3e 615.98kB / 615.98kB 0.1s done
-#13 loading layer 717e122f1a45 313B / 313B 0.1s done
-#13 loading layer adef692e4926 579B / 579B 0.0s done
-#13 DONE 0.2s
+#13 loading layer f422a34111e1 9.78kB / 9.78kB 0.4s done
+#13 loading layer 5266e4757544 1.30kB / 1.30kB 0.4s done
+#13 loading layer 4fffaabe2039 615.92kB / 615.92kB 0.3s done
+#13 loading layer a9d1d8d09fe0 312B / 312B 0.1s done
+#13 loading layer 657466e238f9 580B / 580B 0.0s done
+#13 DONE 0.4s
 
-View build details: docker-desktop://dashboard/build/optimistic_ptolemy/optimistic_ptolemy0/oay09vey12ygqq4mmktxku0wf
+View build details: docker-desktop://dashboard/build/optimistic_ptolemy/optimistic_ptolemy0/mbvrth1nuaz9v0f38rhu2sw3n

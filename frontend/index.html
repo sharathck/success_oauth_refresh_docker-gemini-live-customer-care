@@ -39,20 +39,33 @@
 
     <div>
       <md-outlined-text-field
+        id="token"
+        label="Access Token"
+        value=""
+        type="password"
+      ></md-outlined-text-field>
+      <br />
+      <br />
+      <md-outlined-text-field
         id="project"
-        style="display: none"
         label="Project ID"
         value="reviewtext-ad5c6"
+        style="display: none;"
       ></md-outlined-text-field>
     </div>
 
-    <div class="modality-container" style="display: none">
+    <div class="modality-container" style="display: none;">
+      <p class="md-typescale-body-medium" style="margin-top: 0; display: none;">
+        Model response type
+      </p>
+
       <form>
         <md-radio
-          id="audio-radio"      
+          id="audio-radio"
           name="responseModality"
           value="AUDIO"
           checked="checked"
+          
         ></md-radio>
         <label for="audio-radio">
           <span class="material-symbols-outlined"> volume_up </span>
@@ -74,8 +87,8 @@
     </div>
     <md-outlined-text-field
       id="systemInstructions"
-      style="display: none"
       type="textarea"
+      style="display: none;"
       label="System Instructions"
       rows="3"
       value="Always, greet the customer with , Welcome to the <restaurant_name>.You are a friendly and professional restaurant receptionist assistant. Your primary role is to help customers with inquiries about our menu, prices, reservations, hours, and general restaurant information. Please refer to the below menu items and prices in json format. When customers ask about menu items or prices, refer to the provided restaurant menu data file for accurate information. Always greet customers warmly, speak in a conversational tone, and be patient with their questions. If a customer wants to make a reservation, collect their preferred date, time, party size, and contact information. For menu recommendations, ask about dietary preferences, allergies, or cuisine preferences to provide personalized suggestions. If you don't have specific information about something (like ingredient details or preparation methods), politely let them know you'll have a staff member follow up with them.
@@ -215,7 +228,7 @@
 
     <div>
       <br />
-      <md-outlined-button onclick="connectBtnClick()"
+      <md-outlined-button onclick="connectBtnClick()" style="font-size: 28px;"
         >Connect</md-outlined-button
       >
       <br /><br />
