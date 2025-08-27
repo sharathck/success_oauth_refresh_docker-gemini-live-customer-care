@@ -1,9 +1,10 @@
 The push refers to repository [us-central1-docker.pkg.dev/reviewtext-ad5c6/live-agent/live-agent-refresh]
-43f5701cffa9: Preparing
-7fd2de88687f: Preparing
-deeb37db8e11: Preparing
-1f8c1c9454e5: Preparing
-b37193baddad: Preparing
+de9e2b12be65: Preparing
+51b4b3228298: Preparing
+00b19de4b421: Preparing
+9294b7bb3707: Preparing
+c69b7bb6b90b: Preparing
+6ed865ae2ff7: Preparing
 b5052ec6316e: Preparing
 f9985d3fc94d: Preparing
 d208138be39d: Preparing
@@ -13,6 +14,8 @@ a2b76470e8f1: Preparing
 7978a9c91f72: Preparing
 b6ff0212304e: Preparing
 418dccb7d85a: Preparing
+6ed865ae2ff7: Waiting
+b5052ec6316e: Waiting
 f9985d3fc94d: Waiting
 d208138be39d: Waiting
 a2b76470e8f1: Waiting
@@ -21,19 +24,19 @@ a2b76470e8f1: Waiting
 7978a9c91f72: Waiting
 b6ff0212304e: Waiting
 418dccb7d85a: Waiting
-b5052ec6316e: Waiting
-1f8c1c9454e5: Layer already exists
+c69b7bb6b90b: Layer already exists
+de9e2b12be65: Pushed
+9294b7bb3707: Pushed
+51b4b3228298: Pushed
+00b19de4b421: Pushed
+6ed865ae2ff7: Pushed
 b5052ec6316e: Layer already exists
-f9985d3fc94d: Layer already exists
 d208138be39d: Layer already exists
-7fd2de88687f: Pushed
+f9985d3fc94d: Layer already exists
 a2b76470e8f1: Layer already exists
-b37193baddad: Pushed
-43f5701cffa9: Pushed
-deeb37db8e11: Pushed
 917b2c97271e: Layer already exists
-16ca725632e5: Layer already exists
 7978a9c91f72: Layer already exists
+16ca725632e5: Layer already exists
 b6ff0212304e: Layer already exists
 418dccb7d85a: Layer already exists
-latest: digest: sha256:c57b9982871673c72e480267173d2010b5b1da0000c5abc049dc99cdadfecd0b size: 3241
+latest: digest: sha256:5fabb0889e53d165ea1ea89cbf7d3919c5e90f361e2ec59f5d74e15fcf6d4603 size: 3449

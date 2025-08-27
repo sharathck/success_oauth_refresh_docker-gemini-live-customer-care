@@ -5,8 +5,7 @@ window.addEventListener("load", (event) => {
     setAvailableMicrophoneOptions();
 });
 
-const PROXY_URL = "ws://localhost:9000";
-//const PROXY_URL = "wss://live-agent-rz6cgfhcgq-uc.a.run.app/wss";
+const PROXY_URL = "ws://localhost:8080";
 //const PROXY_URL = "ws://localhost:8000/";
 const PROJECT_ID = "reviewtext-ad5c6";
 const MODEL = "gemini-live-2.5-flash-preview-native-audio";
@@ -14,6 +13,12 @@ const MODEL = "gemini-live-2.5-flash-preview-native-audio";
 //const MODEL = "gemini-2.5-flash-preview-native-audio-dialog";
 const API_HOST = "us-central1-aiplatform.googleapis.com";
 
+
+console.log("Using PROXY_URL: ", PROXY_URL);
+console.log("Using PROJECT_ID: ", PROJECT_ID);
+console.log("Using MODEL: ", MODEL);
+console.log("Using API_HOST: ", API_HOST);
+console.log("Using GOOGLE_SERVICE_ACCOUNT_PATH: ", process.env.GOOGLE_SERVICE_ACCOUNT_PATH);
 const projectInput = document.getElementById("project");
 const systemInstructionsInput = document.getElementById("systemInstructions");
 

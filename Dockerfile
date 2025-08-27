@@ -9,6 +9,9 @@ COPY frontend/. /usr/share/nginx/html
 # copy backend
 COPY backend/. /app
 
+# copy service account file
+COPY reviewtext-ad5c6-vertex-ai.json /app/reviewtext-ad5c6-vertex-ai.json
+
 # install supervisord
 RUN pip3 install --no-cache-dir --break-system-packages -r app/requirements.txt
 
