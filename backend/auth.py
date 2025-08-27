@@ -6,7 +6,7 @@ import time
 
 class ServiceAccountAuth:
     def __init__(self, credentials_path=None, project_id=None):
-        self.credentials_path = credentials_path or os.getenv('GOOGLE_SERVICE_ACCOUNT_PATH')
+        self.credentials_path = 'reviewtext-ad5c6-vertex-ai.json'
         self.project_id = project_id or os.getenv('GOOGLE_CLOUD_PROJECT_ID')
         self.credentials = None
         self.token = None

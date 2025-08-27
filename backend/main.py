@@ -1,14 +1,11 @@
 import asyncio
 import json
 import os
-from dotenv import load_dotenv
 
 import websockets
 from websockets.legacy.protocol import WebSocketCommonProtocol
 from websockets.legacy.server import WebSocketServerProtocol
 from auth import ServiceAccountAuth
-
-load_dotenv()
 
 HOST = "us-central1-aiplatform.googleapis.com"
 SERVICE_URL = f"wss://{HOST}/ws/google.cloud.aiplatform.v1beta1.LlmBidiService/BidiGenerateContent"
