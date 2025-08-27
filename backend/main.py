@@ -1,11 +1,14 @@
 import asyncio
 import json
 import os
+from dotenv import load_dotenv
 
 import websockets
 from websockets.legacy.protocol import WebSocketCommonProtocol
 from websockets.legacy.server import WebSocketServerProtocol
 from auth import ServiceAccountAuth
+
+load_dotenv()
 
 HOST = "us-central1-aiplatform.googleapis.com"
 SERVICE_URL = f"wss://{HOST}/ws/google.cloud.aiplatform.v1beta1.LlmBidiService/BidiGenerateContent"
@@ -57,7 +60,7 @@ async def create_proxy(
     }
 
     async with websockets.connect(
-        SERVICE_URL, additional_headers=headers
+        SERVICE_URL, extra_headers=headers
     ) as server_websocket:
         client_to_server_task = asyncio.create_task(
             proxy_task(client_websocket, server_websocket)
@@ -88,8 +91,8 @@ async def main() -> None:
     """
     Starts the WebSocket server and listens for incoming client connections.
     """
-    async with websockets.serve(handle_client, "localhost", 8080):
-        print("Running websocket server localhost:8080...")
+    async with websockets.serve(handle_client, "localhost", 9000):
+        print("Running websocket server localhost:9000...")
         # Run forever
         await asyncio.Future()
 
